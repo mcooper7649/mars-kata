@@ -73,7 +73,7 @@ let myRover = {
     );
   }
   
-  function moveBackward(rover) {
+  function moveBackward(rover, command) {
     if (rover.direction = "S") {
       rover.y--;
     }
