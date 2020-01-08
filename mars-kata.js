@@ -1,118 +1,121 @@
 // Rover Object Goes Here
 // ======================
 let myRover = {
-    direction: "N",
-    x: 0,
-    y: 0,
-    path: [{ x: 0, y: 0 }]
-  };
-  
-  // ======================
-  function turnLeft(rover, command) {
-    if (rover.direction = "N") {
-      if (command === "l") {
-        rover.direction = "W";
-        console.log("turnLeft was called!");
-        console.log(`Rover Now Facing ${rover.direction}`);
-        let newPosition = { x: rover.x, y: rover.y };
-        rover.path.push(newPosition);
-      }
-    } else if (rover.direction = "W") {
-      rover.direction = "S";
-      console.log("turnLeft was called!");
-      console.log(`Rover Now Facing ${rover.direction}`);
-    } else if (rover.direction = "S") {
-      rover.direction = "E";
-      console.log("turnLeft was called!");
-      console.log(`Rover Now Facing ${rover.direction}`);
-    } else if (rover.direction = "E") {
-      rover.direction = "N";
-      console.log("turnLeft was called!");
-      console.log(`Rover Now Facing ${rover.direction}`);
+  direction: "N",
+  x: 0,
+  y: 0,
+};
+
+function turnLeft(rover) {
+  currDir = rover.direction;
+  switch (currDir) {
+    case "N":
+      currDir = "W";
+      rover.direction = currDir;
+      break;
+    case "W":
+      currDir = "S";
+      rover.direction = currDir;
+      break;
+    case "S":
+      currDir = "E";
+      rover.direction = currDir;
+      break;
+    case "E":
+      currDir = "N";
+      rover.direction = currDir;
+      break;
+    default:
+      console.log ("Please choose L or R to change direction");
     }
-  }
-  
-  function turnRight(rover, command) {
-    if (rover.direction = "N") {
-      rover.direction = "E";
-      console.log("turnRight was called!");
-      console.log(`Rover Now Facing ${rover.direction}`);
-    } else if (rover.direction = "E") {
-      rover.direction = "S";
-      console.log("turnRight was called!");
-      console.log(`Rover Now Facing ${rover.direction}`);
-    } else if (rover.direction = "S") {
-      rover.direction = "W";
-      console.log("turnRight was called!");
-      console.log(`Rover Now Facing ${rover.direction}`);
-    } else if (rover.direction = "W") {
-      rover.direction = "N";
-      console.log("turnRight was called!");
-      console.log(`Rover Now Facing ${rover.direction}`);
+  console.log("Turn Left was called. " + `Now Facing: ` + currDir)
+}
+
+function turnRight(rover) {
+  currDir = rover.direction;
+  switch (currDir) {
+    case "N":
+      currDir = "E";
+      rover.direction = currDir;
+      break;
+    case "E":
+      currDir = "S";
+      rover.direction = currDir;
+      break;
+    case "S":
+      currDir = "W";
+      rover.direction = currDir;
+      break;
+    case "W":
+      currDir = "N";
+      rover.direction = currDir;
+      break;
+    default:
+      console.log ("Please choose L or R to change direction");
     }
-  }
-  
-  function moveForward(rover, command) {
-    if (rover.direction = "N") {
+  console.log("Turn Right was called. " + `Now Facing: ` + currDir)
+}
+
+function moveForward (rover, command) {
+  currDir = rover.direction;
+  switch (currDir) {
+    case "N":
       rover.y--;
-    }
-    if (rover.direction = "S") {
+      break;
+    case "S":
       rover.y++;
-    }
-    if (rover.direction = "E") {
+      break;
+    case "E":
       rover.x++;
-    }
-    if (rover.direction = "W") {
+      break;
+    case "W":
       rover.x--;
-    }
-    console.log("moveForward was called");
-    console.log(
-      `X Coordinates = ${rover.x} Y Coordinates = ${
-        rover.y
-      } and Facing Direction: ${rover.direction}`
-    );
+      break;
+    default:
+      console.log ("Please press U or D to move Forward/Backward");
   }
-  
-  function moveBackward(rover) {
-    if (rover.direction = "S") {
+  console.log(`X Coordinates = ${rover.x} Y Coordinates = ${rover.y}`)
+}
+
+function moveBackward (rover, command) {
+  currDir = rover.direction;
+  switch (currDir) {
+    case "N":
+      rover.y++;
+      break;
+    case "S":
       rover.y--;
-    }
-    if (rover.direction = "N") {
-      rover.y++;
-    }
-    if (rover.direction = "W") {
-      rover.x++;
-    }
-    if (rover.direction = "E") {
+      break;
+    case "E":
       rover.x--;
-    }
-    console.log("moveBackward was called");
-    console.log(
-      `X Coordinates = ${rover.x} Y Coordinates = ${
-        rover.y
-      } and Facing Direction: ${rover.direction}`
-    );
+      break;
+    case "W":
+      rover.x++;
+      break;
+    default:
+      console.log ("Please press U or D to move Forward/Backward");
   }
-  
-  function command(rover, orders) {
-    for (let i = 0; i < orders.length; i++) {
-      let order = orders[i];
-      switch (order) {
-        case "l": // left
-          turnLeft(rover, order);
-          break;
-        case "r": // right
-          turnRight(rover, order);
-          break;
-        case "u": // up
-          moveForward(rover, order);
-          break;
-        case "d": // down
-          moveBackward(rover, order);
-          break;
-      }
+  console.log(`X Coordinates = ${rover.x} Y Coordinates = ${rover.y}`)
+}
+
+function command(rover, orders) {
+  for (let i = 0; i < orders.length; i++) {
+    let order = orders[i];
+    switch (order) {
+      case "l": // left
+        turnLeft(rover, order);
+        break;
+      case "r": // right
+        turnRight(rover, order);
+        break;
+      case "u": // up
+        moveForward(rover, order);
+        break;
+      case "d": // down
+        moveBackward(rover, order);
+        break;
     }
-    console.log(rover.path);
   }
-  
-  command(myRover, "l");
+}
+    
+    command(myRover, "lluuluuu");
